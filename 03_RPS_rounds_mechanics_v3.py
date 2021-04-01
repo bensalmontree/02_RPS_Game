@@ -46,10 +46,20 @@ while end_game == "no":
         heading = "Rounds {} of " \
                 "{}".format(rounds_played + 1 , rounds)
 
+    print(heading)
+    choose = input ("{} or 'xxx' to "
+    "end: ".format(choose_instruction))
     # End game if exit code is typed
     if choose == "xxx":
         break
 
     # **** rest of loop / game ****
+    print("You chose {}".format(choose))
+
+    rounds_played += 1
+
+    # end game if requested # of rounds has been played
+    if rounds_played == rounds:
+        break
    
 print("Thank you for playing")

@@ -5,7 +5,7 @@ def check_rounds():
     while True:
         response = input("How many rounds: ")
 
-        round_error = "Plese type either <enter> " \
+        round_error = "Please type either <enter> " \
             "or an integer that is more than 0"
         
         if response != "":
@@ -56,4 +56,4 @@ while end_game == "no":
     rounds_played += 1
 
     
-print("Thanks for playing")
+print("Thank you for playing")
