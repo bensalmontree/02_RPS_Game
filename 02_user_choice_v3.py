@@ -4,22 +4,22 @@
 # Functions go here
 def choice_checker(question, valid_list, error):
 
-        valid = False
-        while not valid:
+    valid = False
+    while not valid:
 
-            # Ask user for choice (and put choice in lowercase)
-            response = input(question).lower()
+        # Ask user for choice (and put choice in lowercase)
+        response = input(question).lower()
 
-            # iterates through list and if response is an item
-            # in the list ( or the first letter of an item), the
-            # full item name is returned
+        # iterates through list and if response is an item
+        # in the list ( or the first letter of an item), the
+        # full item name is returned
 
-            for item in valid_list:
-                if response == item [0] or response == item:
-                    return item
+        for item in valid_list:
+            if response == item[0] or response == item:
+                return item
 
-            # output error if item is not in list
-            print("error")
+        # output error if item is not in list
+        print("error")
 
 # Main routine goes here
 
@@ -30,9 +30,5 @@ rps_list = ["rock", "paper", "scissors", "xxx"]
 user_choice = ""
 while user_choice != "xxx":
 
-    # Asdk user for choice and check it's valid
-    user_choice = choice_checker("Choose rock / paper / "
-    "scissors (r/p/s): ", rps_list
-    "please choocse from rock / "
-    "paper / scissors "
-    "(or xxx to quit)")
+    # Ask user for choice and check it's valid
+    user_choice = choice_checker("Choose rock / paper / scissors (r/p/s): ", rps_list, "Please choose from rock / paper / scissors (or xxx to quit)")
