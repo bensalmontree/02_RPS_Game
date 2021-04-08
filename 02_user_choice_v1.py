@@ -31,9 +31,7 @@ user_choice = ""
 while user_choice != "xxx":
 
     # Ask user for choice and check it's valid
-    user_choice = choice_checker("Choose rock / paper / "
-    "scissors (r/p/s: ")
+    user_choice = choice_checker("Choose rock / paper / scissors (r/p/s): ")
 
     # print out choice for comparison purposes
     print("You chose {}".format(user_choice))
-

@@ -19,9 +19,11 @@ def choice_checker(question, valid_list, error):
                 return item
 
         # output error if item is not in list
-        print("error")
+        print(error)
+        print()
 
 # Main routine goes here
+
 
 # lists for checking responses
 rps_list = ["rock", "paper", "scissors", "xxx"]
@@ -32,3 +34,6 @@ while user_choice != "xxx":
 
     # Ask user for choice and check it's valid
     user_choice = choice_checker("Choose rock / paper / scissors (r/p/s): ", rps_list, "Please choose from rock / paper / scissors (or xxx to quit)")
+
+    # print out choice for comparison purposes
+    print("You chose {}".format(user_choice))

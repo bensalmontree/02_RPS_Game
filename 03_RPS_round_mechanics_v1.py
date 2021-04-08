@@ -7,7 +7,7 @@ def check_rounds():
 
         round_error = "Please type either <enter> " \
             "or an integer that is more than 0"
-        
+
         if response != "":
             try:
                 response = int(response)
@@ -15,7 +15,7 @@ def check_rounds():
                 if response < 1:
                     print(round_error)
                     continue
-            
+
             except ValueError:
                 print(round_error)
                 continue
@@ -26,8 +26,8 @@ def check_rounds():
 # Main routine goes here...
 
 rounds_played = 0
-choose_instruction = "Please choose rock (r), paper " \
-     "(p) or scissors (s)"
+choose_instruction = "Please choose rock (r), paper \
+     (p) or scissors (s)"
 
 # Ask user for # of rounds, <enter> for infinite mode
 rounds = check_rounds()
@@ -55,5 +55,5 @@ while end_game == "no":
 
     rounds_played += 1
 
-    
+
 print("Thank you for playing")

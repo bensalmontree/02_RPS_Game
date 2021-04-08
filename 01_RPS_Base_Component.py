@@ -1,5 +1,6 @@
 import random
 
+
 # Functions go here
 def check_rounds():
     while True:
@@ -7,7 +8,7 @@ def check_rounds():
 
         round_error = "Please type either <enter> " \
             "or an integer that is more than 0"
-        
+
         # If infinite mode not chosen, check response
         # is an integer that is more
         if response != "":
@@ -19,7 +20,7 @@ def check_rounds():
                 if response < 1:
                     print(round_error)
                     continue
-            
+
             # If response is not an integer, go back to
             # start of loop
             except ValueError:
@@ -28,7 +29,28 @@ def check_rounds():
 
         return response
 
-def choice_checker(question, valid_list, error):
+
+def check_rounds():
+    while True:
+        response = input("How many rounds: ")
+
+        round_error = "Please type either <enter> " \
+            "or an integer that is more than 0"
+
+        if response != "":
+            try:
+                response = int(response)
+
+                if response < 1:
+                    print(round_error)
+                    continue
+
+            except ValueError:
+                print(round_error)
+                continue
+
+        return response
+
 
 # Main routine goes here
 
@@ -57,19 +79,18 @@ end_game = "no"
 while end_game == "no":
 
     # Start of Game Play Loop
-    
+
     # Rounds Heading
     print()
     if rounds == "":
-        heading = "Continuous Mode: " \
-        "Rounds {}".format(rounds_played +1, rounds)
+        heading = "Continuous Mode: Rounds {}".format(rounds_played + 1)
     else:
         heading = "Rounds {} of " \
-                "{}".format(rounds_played + 1 , rounds)
+                "{}".format(rounds_played + 1, rounds)
 
     print(heading)
-    choose = input ("{} or 'xxx' to "
-    "end: ".format(choose_instruction))
+
+    choose = input("{} or 'xxx' to end: ".format(choose_instruction))
     # End game if exit code is typed
     if choose == "xxx":
         break
