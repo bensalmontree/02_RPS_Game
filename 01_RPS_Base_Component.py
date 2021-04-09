@@ -6,8 +6,7 @@ def check_rounds():
     while True:
         response = input("How many rounds: ")
 
-        round_error = "Please type either <enter> " \
-            "or an integer that is more than 0"
+        round_error = "Please type either <enter> or an integer that is more than 0\n"
 
         # If infinite mode not chosen, check response
         # is an integer that is more
@@ -30,26 +29,25 @@ def check_rounds():
         return response
 
 
-def check_rounds():
-    while True:
-        response = input("How many rounds: ")
+def choice_checker(question, valid_list, error):
 
-        round_error = "Please type either <enter> " \
-            "or an integer that is more than 0"
+    valid = False
+    while not valid:
 
-        if response != "":
-            try:
-                response = int(response)
+        # Ask user for choice (and put choice in lowercase)
+        response = input(question).lower()
 
-                if response < 1:
-                    print(round_error)
-                    continue
+        # iterates through list and if response is an item
+        # in the list ( or the first letter of an item), the
+        # full item name is returned
 
-            except ValueError:
-                print(round_error)
-                continue
+        for item in valid_list:
+            if response == item[0] or response == item:
+                return item
 
-        return response
+        # output error if item is not in list
+        print(error)
+        print()
 
 
 # Main routine goes here
@@ -64,13 +62,6 @@ rps_list = ["rock", "paper", "scissors", "xxx"]
 
 # Ask user for $ of rounds then loop...
 rounds_played = 0
-choose_instruction = "Please choose rock (r), paper " \
-     "(p) or scissors (s)"
-
-# Ask user for # of rounds, <enter> for infinite mode
-rounds_played = 0
-choose_instruction = "Please choose rock (r), paper " \
-     "(p) or scissors (s)"
 
 # Ask user for # of rounds, <enter> for infinite mode
 rounds = check_rounds()
@@ -85,12 +76,15 @@ while end_game == "no":
     if rounds == "":
         heading = "Continuous Mode: Rounds {}".format(rounds_played + 1)
     else:
-        heading = "Rounds {} of " \
-                "{}".format(rounds_played + 1, rounds)
+        heading = "Rounds {} of {}".format(rounds_played + 1, rounds)
 
     print(heading)
+    choose_instruction = "Please choose rock, paper or scissors or 'xxx' to exit: "
+    choose_error = "Please choose from rock, paper or scissors or 'xxx' to exit: "
 
-    choose = input("{} or 'xxx' to end: ".format(choose_instruction))
+    # Ask user for choice and check it's valid
+    choose = choice_checker(choose_instruction, rps_list, choose_error)
+
     # End game if exit code is typed
     if choose == "xxx":
         break
