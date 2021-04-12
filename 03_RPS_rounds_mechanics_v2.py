@@ -48,6 +48,7 @@ while end_game == "no":
 
     print(heading)
     choose = input("{} or 'xxx' to end: ".format(choose_instruction))
+    
     # End game if exit code is typed
     if choose == "xxx":
         break
