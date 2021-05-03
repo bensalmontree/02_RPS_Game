@@ -62,6 +62,8 @@ rps_list = ["rock", "paper", "scissors", "xxx"]
 
 # Ask user for $ of rounds then loop...
 rounds_played = 0
+rounds_lost = 0
+rounds_drawn = 0
 
 # Ask user for # of rounds, <enter> for infinite mode
 rounds = check_rounds()
@@ -83,20 +85,31 @@ while end_game == "no":
     choose_error = "Please choose from rock, paper or scissors or 'xxx' to exit: "
 
     # Ask user for choice and check it's valid
-    choose = choice_checker(choose_instruction, rps_list, choose_error)
+    user_choice = choice_checker(choose_instruction, rps_list, choose_error)
 
     # get computer choice
     comp_choice = random.choice(rps_list[:-1])
     print("Comp Choice: ", comp_choice)
 
     # compare choices
+    if comp_choice == user_choice:
+        result = "tie"
+    elif user_choice == "rock" and comp_choice == "scissors":
+        result = "won"
+    elif user_choice == "paper" and comp_choice == "rock":
+        result = "won"
+    elif user_choice == "scissors" and comp_choice == "paper":
+        result = "won"
+    else:
+        result = "lost"
+        rounds_lost += 1
 
     # End game if exit code is typed
-    if choose == "xxx":
+    if user_choice == "xxx":
         break
 
     # **** rest of loop / game ****
-    print("You chose {}".format(choose))
+    print("You chose {}".format(user_choice))
 
     rounds_played += 1
 
@@ -108,3 +121,12 @@ while end_game == "no":
 # If 'yes' show game history
 
 # Show game statistics
+# Quick calculations (stats)
+rounds_won = rounds_played - rounds_lost - rounds_drawn
+
+# End of Game Statements
+print()
+print('***** End Game Summary *****')
+print("Won: {} \t|\t Lost: {} \t|\t Draw: {}".format(rounds_won, rounds_lost, rounds_drawn))
+print()
+print("Thanks for playing")
