@@ -2,6 +2,8 @@ import random
 
 
 # Functions go here
+
+# Asks user how many rounds to be played
 def check_rounds():
     while True:
         response = input("How many rounds: ")
@@ -28,7 +30,7 @@ def check_rounds():
 
         return response
 
-
+#  Check if response to question is valid
 def choice_checker(question, valid_list, error):
 
     valid = False
@@ -60,7 +62,7 @@ rps_list = ["rock", "paper", "scissors", "xxx"]
 # If 'yes', show instructions
 
 
-# Ask user for $ of rounds then loop...
+# Ask user for # of rounds then loop...
 rounds_played = 0
 rounds_lost = 0
 rounds_drawn = 0
@@ -87,13 +89,14 @@ while end_game == "no":
     # Ask user for choice and check it's valid
     user_choice = choice_checker(choose_instruction, rps_list, choose_error)
 
-    # get computer choice
+    # Randomly generate computer choice
     comp_choice = random.choice(rps_list[:-1])
     print("Comp Choice: ", comp_choice)
 
-    # compare choices
+    # Compare user to comp choice and give result
     if comp_choice == user_choice:
         result = "tie"
+        rounds_drawn +=1
     elif user_choice == "rock" and comp_choice == "scissors":
         result = "won"
     elif user_choice == "paper" and comp_choice == "rock":
@@ -104,12 +107,20 @@ while end_game == "no":
         result = "lost"
         rounds_lost += 1
 
+    if result == "tie":
+        feedback = "It's a tie"
+    else:
+        feedback = "{} vs {} - You {}".format(user_choice, comp_choice, result)
+
     # End game if exit code is typed
     if user_choice == "xxx":
         break
 
     # **** rest of loop / game ****
-    print("You chose {}".format(user_choice))
+
+    # Print W/L statements
+    print(feedback)
+   
 
     rounds_played += 1
 
@@ -121,6 +132,7 @@ while end_game == "no":
 # If 'yes' show game history
 
 # Show game statistics
+ 
 # Quick calculations (stats)
 rounds_won = rounds_played - rounds_lost - rounds_drawn
 
