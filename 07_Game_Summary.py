@@ -1,7 +1,9 @@
+# Empty list
 game_summary = []
 
 rounds_lost = 0
 rounds_drawn = 0
+# For testing purposes, set rounds played is {5}
 rounds_played = 5
 
 for item in range(0, 5):
@@ -18,7 +20,7 @@ for item in range(0, 5):
 
 rounds_won = rounds_played - rounds_lost - rounds_drawn
 
-# **** Calculate Game Stats *****
+# **** Calculate Game Stats  as a % *****
 percent_win = rounds_won / rounds_played * 100
 percent_lose = rounds_lost / rounds_played * 100
 percent_tie = rounds_drawn / rounds_played * 100

@@ -63,6 +63,8 @@ rps_list = ["rock", "paper", "scissors", "xxx"]
 
 
 # Ask user for # of rounds then loop...
+game_summary = []
+
 rounds_played = 0
 rounds_lost = 0
 rounds_drawn = 0
@@ -91,7 +93,6 @@ while end_game == "no":
 
     # Randomly generate computer choice
     comp_choice = random.choice(rps_list[:-1])
-    print("Comp Choice: ", comp_choice)
 
     # Compare user to comp choice and give result
     if comp_choice == user_choice:
@@ -118,27 +119,45 @@ while end_game == "no":
 
     # **** rest of loop / game ****
 
-    # Print W/L statements
+    # Output W/L statements and results
     print(feedback)
    
 
     rounds_played += 1
 
-    # end game if requested # of rounds has been played
+    # End game if requested # of rounds has been played
     if rounds_played == rounds:
         break
 
 # Ask user if they want to see their game history
 # If 'yes' show game history
 
-# Show game statistics
- 
-# Quick calculations (stats)
+    if result == "lost" or result == "won":
+        outcome = "Round: {}: {} vs {} - You {}".format(rounds_played, user_choice, comp_choice, result)
+    else:
+        outcome = "Round: {}: {} vs {} - It's a tie".format(rounds_played, user_choice, comp_choice)
+
+    game_summary.append(outcome)
+
+# Show game statistics 
 rounds_won = rounds_played - rounds_lost - rounds_drawn
 
-# End of Game Statements
+# Calculate Game Stats  as a %
+percent_win = rounds_won / rounds_played * 100
+percent_lose = rounds_lost / rounds_played * 100
+percent_tie = rounds_drawn / rounds_played * 100
+
 print()
-print('***** End Game Summary *****')
-print("Won: {} \t|\t Lost: {} \t|\t Draw: {}".format(rounds_won, rounds_lost, rounds_drawn))
+print("**** Game History****")
+for game in game_summary:
+    print(game)
+
+print()
+
+# Displays game state with % values to the nearest whole number
+print("******* Game Statistics *******")
+print("Win: {}, ({:.0f}%)\nLoss: {}, ({:.0f}%)\nTie: {}, ({:.0f}%:)".format(rounds_won, percent_win, rounds_lost, percent_lose, rounds_drawn, percent_tie))
+
+# End of Game Statements
 print()
 print("Thanks for playing")
