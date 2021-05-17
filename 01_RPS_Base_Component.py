@@ -53,15 +53,8 @@ def choice_checker(question, valid_list, error):
 
 # Displays instuctions if asked
 def instructions():
-    print("**** How to Play ****\n")
-    print("Choose either a number of rounds or press <enter> for infinite mode\n")
-    print("Then for each round, choose from rock / paper / scissors (or xxx to quit)")
-    print("You can type r / p / s / x if you don't want to type the entire word.\n")
-    print("The rules are...")
-    print("- Rock beats scissor")
-    print("- Scissor beats paper")
-    print("Paper beats rock\n")
-    print("*** Have fun ***\n")
+    print()
+    print("**** How to Play ****\n\nChoose either a number of rounds or press <enter> for infinite mode\n\nThen for each round, choose from rock / paper / scissors (or xxx to quit)\nYou can type r / p / s / x if you don't want to type the entire word.\n\nThe rules are...\n- Rock beats scissor\n- Scissor beats paper\n- Paper beats rock\n\n*** Have fun ***\n")
     return ""
 
 # Confirms yes / no response
@@ -112,15 +105,11 @@ while end_game == "no":
     # Start of Game Play Loop
 
     # Rounds Heading
-    
-    # End game if exit code is typed
-    if user_choice == "xxx":
-        break    print()
-        
+    print()
     if rounds == "":
-        heading = "Continuous Mode: Rounds {}".format(rounds_played + 1)
+        heading = "========== Continuous Mode: Round {} ===========".format(rounds_played + 1)
     else:
-        heading = "Rounds {} of {}".format(rounds_played + 1, rounds)
+        heading = "========== Rounds {} of {} ==========".format(rounds_played + 1, rounds)
 
     print(heading)
     choose_instruction = "Please choose rock, paper or scissors or 'xxx' to exit: "
@@ -147,21 +136,24 @@ while end_game == "no":
         rounds_lost += 1
 
     if result == "tie":
-        feedback = "Round: {}: {} vs {} - It's a tie".format(rounds_played, user_choice, comp_choice)
+        feedback = "{} vs {} - It's a tie".format(user_choice, comp_choice)
     else:
         feedback = "{} vs {} - You {}".format(user_choice, comp_choice, result)
 
+    # End game if exit code is typed after 1 round
+    if user_choice == "xxx" and rounds_played > 0:
+        break
 
+    # If exit code is entered before 1 round, prompt user to play at least one round
+    elif user_choice == "xxx" and rounds_played == 0:
+        print("You need to play at least one round")
+        continue
 
     # Output W/L statements and results
     print(feedback)
     rounds_played += 1
 
-    # End game if requested # of rounds has been played
-    if rounds_played == rounds:
-        break
-
-# Calculate game history
+    # Calculate game history
     if result == "lost" or result == "won":
         outcome = "Round: {}: {} vs {} - You {}".format(rounds_played, user_choice, comp_choice, result)
     else:
@@ -169,10 +161,16 @@ while end_game == "no":
 
     game_summary.append(outcome)
 
+    # End game if requested # of rounds has been played
+    if rounds_played == rounds:
+        break
+
+# Rest of the code 
+
 # Show game statistics 
 rounds_won = rounds_played - rounds_lost - rounds_drawn
 
-# Calculate Game Stats  as a %
+# Calculate Game Stats as a %
 percent_win = rounds_won / rounds_played * 100
 percent_lose = rounds_lost / rounds_played * 100
 percent_tie = rounds_drawn / rounds_played * 100

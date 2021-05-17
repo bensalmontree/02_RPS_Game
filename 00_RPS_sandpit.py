@@ -1,0 +1,2 @@
+print()
+print("**** How to Play ****\n\nChoose either a number of rounds or press <enter> for infinite mode\n\nThen for each round, choose from rock / paper / scissors (or xxx to quit)\nYou can type r / p / s / x if you don't want to type the entire word.\n\nThe rules are...\n- Rock beats scissor\n- Scissor beats paper\n- Paper beats rock\n\n*** Have fun ***\n")
