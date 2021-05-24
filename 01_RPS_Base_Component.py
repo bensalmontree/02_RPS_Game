@@ -53,8 +53,7 @@ def choice_checker(question, valid_list, error):
 
 # Displays instuctions if asked
 def instructions():
-    print()
-    print("**** How to Play ****\n\nChoose either a number of rounds or press <enter> for infinite mode\n\nThen for each round, choose from rock / paper / scissors (or xxx to quit)\nYou can type r / p / s / x if you don't want to type the entire word.\n\nThe rules are...\n- Rock beats scissor\n- Scissor beats paper\n- Paper beats rock\n\n*** Have fun ***\n")
+    print("\n**** How to Play ****\n\nChoose either a number of rounds or press <enter> for infinite mode\n\nThen for each round, choose from rock / paper / scissors (or xxx to quit)\nYou can type r / p / s / x if you don't want to type the entire word.\n\nThe rules are...\n- Rock beats scissor\n- Scissor beats paper\n- Paper beats rock\n\n*** Have fun ***\n")
     return ""
 
 # Confirms yes / no response
@@ -72,7 +71,7 @@ def yes_no(question):
             return response
 
         else:
-            print("Please answer yes / no")
+            print("Please answer yes / no\n")
 
 
 # Main routine goes here
@@ -176,20 +175,16 @@ percent_lose = rounds_lost / rounds_played * 100
 percent_tie = rounds_drawn / rounds_played * 100
 
 # Ask user if they want to see their game history
-print()
-game_history = yes_no("Do you want to see game history? ")
+game_history = yes_no("\nDo you want to see game history? ")
 
 if game_history == "yes":
-    print()
-    print("**** Game History ****\n")
+    print("\n**** Game History ****\n")
     for game in game_summary:
         print(game)
 
 # Displays game state with % values to the nearest whole number
-print()
-print("******* Game Statistics *******")
+print("\n******* Game Statistics *******")
 print("Win: {}, ({:.0f}%)\nLoss: {}, ({:.0f}%)\nTie: {}, ({:.0f}%:)\n".format(rounds_won, percent_win, rounds_lost, percent_lose, rounds_drawn, percent_tie))
 
 # End of Game Statements
-print()
-print("Thanks for playing")
+print("Thanks for playing\n")
