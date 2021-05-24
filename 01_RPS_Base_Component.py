@@ -53,7 +53,11 @@ def choice_checker(question, valid_list, error):
 
 # Displays instuctions if asked
 def instructions():
-    print("\n**** How to Play ****\n\nChoose either a number of rounds or press <enter> for infinite mode\n\nThen for each round, choose from rock / paper / scissors (or xxx to quit)\nYou can type r / p / s / x if you don't want to type the entire word.\n\nThe rules are...\n- Rock beats scissor\n- Scissor beats paper\n- Paper beats rock\n\n*** Have fun ***\n")
+    print()
+    statement_generator("How to Play","-")
+    print("\nChoose either a number of rounds or press <enter> for infinite mode\n\nThen for each round, choose from rock / paper / scissors (or xxx to quit)\nYou can type r / p / s / x if you don't want to type the entire word.\n\nThe rules are...\n- Rock beats scissor\n- Scissor beats paper\n- Paper beats rock\n")
+    statement_generator("Have fun","-")
+    print()
     return ""
 
 # Confirms yes / no response
@@ -72,6 +76,15 @@ def yes_no(question):
 
         else:
             print("Please answer yes / no\n")
+
+def statement_generator(statement, decoration):
+    sides = decoration * 5
+    statement = "{} {} {}".format(sides, statement, sides)
+    top_bottom = decoration * len(statement)
+    print(top_bottom)
+    print(statement)
+    print(top_bottom)
+    return ""
 
 
 # Main routine goes here
@@ -106,11 +119,11 @@ while end_game == "no":
     # Rounds Heading
     print()
     if rounds == "":
-        heading = "========== Continuous Mode: Round {} ===========".format(rounds_played + 1)
+        heading = "Continuous Mode: Round {}".format(rounds_played + 1)
     else:
-        heading = "========== Rounds {} of {} ==========".format(rounds_played + 1, rounds)
+        heading = "Rounds {} of {}".format(rounds_played + 1, rounds)
 
-    print(heading)
+    statement_generator(heading,"=")
     choose_instruction = "Please choose rock, paper or scissors or 'xxx' to exit: "
     choose_error = "Please choose from rock, paper or scissors or 'xxx' to exit: "
 
@@ -135,9 +148,11 @@ while end_game == "no":
         rounds_lost += 1
 
     if result == "tie":
-        feedback = "{} vs {} - It's a tie".format(user_choice, comp_choice)
-    else:
-        feedback = "{} vs {} - You {}".format(user_choice, comp_choice, result)
+        feedback = "(- _ -) {} vs {} -  It's a tie (- _ -)".format(user_choice, comp_choice)
+    elif result == "won":
+        feedback = "(^ v ^) {} vs {} - You won! (^ v ^)".format(user_choice, comp_choice)
+    elif result == "lost":
+        feedback = "(; - ;) {} vs {} - You lost (; - ;)".format(user_choice, comp_choice)
 
     # End game if exit code is typed after 1 round
     if user_choice == "xxx" and rounds_played > 0:
@@ -178,12 +193,16 @@ percent_tie = rounds_drawn / rounds_played * 100
 game_history = yes_no("\nDo you want to see game history? ")
 
 if game_history == "yes":
-    print("\n**** Game History ****\n")
+    print()
+    statement_generator("Game History","-")
+    print()
     for game in game_summary:
         print(game)
 
 # Displays game state with % values to the nearest whole number
-print("\n******* Game Statistics *******")
+print()
+statement_generator("Game Statistics","-")
+print()
 print("Win: {}, ({:.0f}%)\nLoss: {}, ({:.0f}%)\nTie: {}, ({:.0f}%:)\n".format(rounds_won, percent_win, rounds_lost, percent_lose, rounds_drawn, percent_tie))
 
 # End of Game Statements
