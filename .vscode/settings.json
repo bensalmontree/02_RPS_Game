@@ -1,6 +1,9 @@
 {
     "python.linting.pylintEnabled": false,
     "python.linting.pycodestyleEnabled": true,
-    "python.linting.enabled": true,
-    "python.linting.pycodestyleArgs": ["--max-line-length=200"],
+    "python.linting.enabled": false,
+    "python.linting.pycodestyleArgs": [
+        "--max-line-length=200"
+    ],
+    "python.pythonPath": "C:\\Program Files\\Python35\\python.exe",
 }

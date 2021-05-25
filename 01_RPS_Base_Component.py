@@ -95,8 +95,8 @@ rps_list = ["rock", "paper", "scissors", "xxx"]
 
 # Ask user if they have played before
 # If 'yes', show instructions
-played_before = yes_no("Have you played the "
-                           "game before? ")
+played_before = choice_checker("Have you played the "
+                           "game before? ", yes_no_list, "Please enter yes or no")
 
 if played_before == "no":
     instructions()
@@ -107,6 +107,8 @@ game_summary = []
 rounds_played = 0
 rounds_lost = 0
 rounds_drawn = 0
+
+feedback = ""
 
 # Ask user for # of rounds, <enter> for infinite mode
 rounds = check_rounds()
@@ -129,6 +131,15 @@ while end_game == "no":
 
     # Ask user for choice and check it's valid
     user_choice = choice_checker(choose_instruction, rps_list, choose_error)
+
+    # End game if exit code is typed after 1 round
+    if user_choice == "xxx" and rounds_played > 0:
+        break
+
+    # If exit code is entered before 1 round, prompt user to play at least one round
+    elif user_choice == "xxx" and rounds_played == 0:
+        print("You need to play at least one round")
+        continue
 
     # Randomly generate computer choice
     comp_choice = random.choice(rps_list[:-1])
@@ -154,14 +165,6 @@ while end_game == "no":
     elif result == "lost":
         feedback = "(; - ;) {} vs {} - You lost (; - ;)".format(user_choice, comp_choice)
 
-    # End game if exit code is typed after 1 round
-    if user_choice == "xxx" and rounds_played > 0:
-        break
-
-    # If exit code is entered before 1 round, prompt user to play at least one round
-    elif user_choice == "xxx" and rounds_played == 0:
-        print("You need to play at least one round")
-        continue
 
     # Output W/L statements and results
     print(feedback)
